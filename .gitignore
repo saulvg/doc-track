@@ -1,0 +1,34 @@
+# ───────── comunes para cualquier proyecto Node ─────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+dist/
+build/
+.cache/
+.tmp/
+.DS_Store
+
+# ───────── variables de entorno (¡nunca en Git!) ─────────
+.env
+.env.*          # .env.local, .env.production, etc.
+
+# ───────── artefactos de Next (front) ─────────
+.next/
+out/
+
+# ───────── artefactos de Express (back) ─────────
+logs/
+pids/
+*.pid
+/*.log
+
+# ───────── PM2 y otras tools ─────────
+pids
+pm2-*.log
+
+# ───────── sistemas de CI / IDE / OS ─────────
+.idea/
+.vscode/
+coverage/
+*.swp
