@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { AuthRepository } from '../repositories/auth.repository.js'
 import { createUserSchema, loginSchema } from '../schemas/auth.schema.js'
+import { MESSAGES } from '../constants/messages.js'
 const router = Router()
 
 // POST /api/auth/register
@@ -11,7 +12,7 @@ router.post('/register', async (req, res) => {
   }
   try {
     const id = await AuthRepository.register(parsed.data)
-    return res.status(201).json({ message: 'Usuario creado', id })
+    return res.status(201).json({ message: MESSAGES.USER_CREATED, id })
   } catch (err) {
     return res.status(409).json({ message: err.message })
   }
@@ -25,7 +26,7 @@ router.post('/login', async (req, res) => {
   }
   try {
     const user = await AuthRepository.login(parsed.data)
-    return res.status(200).json({ message: 'Usuario logueado', user })
+    return res.status(200).json({ message: MESSAGES.USER_LOGGED_IN, user })
   } catch (err) {
     return res.status(401).json({ message: err.message })
   }

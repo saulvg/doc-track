@@ -2,6 +2,7 @@ import DBLocal from 'db-local'
 import bcrypt from 'bcrypt'
 import crypto from 'node:crypto'
 import { DB_PATH, SALT_ROUNDS } from '../config/index.js'
+import { MESSAGES } from '../constants/messages.js'
 
 const { Schema } = new DBLocal({ path: DB_PATH })
 const User = Schema('User', {
@@ -16,7 +17,7 @@ export class AuthRepository {
    */
   static async register({ username, password }) {
     if (User.findOne({ username })) {
-      throw new Error('El username ya está en uso')
+      throw new Error(MESSAGES.USERNAME_IN_USE)
     }
     const hashed = await bcrypt.hash(password, SALT_ROUNDS)
     const id = crypto.randomUUID()
@@ -30,11 +31,11 @@ export class AuthRepository {
   static async login({ username, password }) {
     const user = User.findOne({ username })
     if (!user) {
-      throw new Error('Credenciales inválidas')
+      throw new Error(MESSAGES.INVALID_CREDENTIALS)
     }
     const valid = await bcrypt.compare(password, user.password)
     if (!valid) {
-      throw new Error('Credenciales inválidas')
+      throw new Error(MESSAGES.INVALID_CREDENTIALS)
     }
     return { _id: user._id, username: user.username }
   }

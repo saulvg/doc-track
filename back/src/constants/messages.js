@@ -20,3 +20,6 @@ export const MESSAGES = {
   ...ERROR_MESSAGES,
   ...SUCCESS_MESSAGES
 }
+
+export const SERVER_RUNNING_MESSAGE = 'Servidor corriendo en el puerto'
+export const DB_CONNECTED_MESSAGE = 'Base de datos conectada correctamente'

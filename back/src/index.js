@@ -50,5 +50,8 @@ app.listen(PORT, () => {
 
 import { app } from './app.js'
 import { PORT } from './config/index.js'
+import { MESSAGES } from './constants/messages.js'
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () =>
+  console.log(`${MESSAGES.SERVER_RUNNING_MESSAGE} ${PORT}`)
+)
